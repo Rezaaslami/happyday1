@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گالری عکس</title>
+    <style>
+        /* تنظیمات عمومی */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* استایل عنوان اصلی */
+        h1 {
+            font-size: 2.5em;
+            color: #ff6600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* استایل پاراگراف تبریک */
+        p {
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* استایل گالری */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* استایل برای دکمه‌های لایک و قلب */
+        .reaction-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center; /* دکمه‌ها را در وسط قرار می‌دهد */
+            gap: 10px; /* فاصله بین دکمه‌ها */
+        }
+
+        .reaction-buttons button {
+            padding: 8px 16px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .like-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .like-btn:disabled {
+            background-color: #ddd;
+        }
+
+        .heart-btn {
+            background-color: #FF4081;
+            color: white;
+        }
+
+        .heart-btn:disabled {
+            background-color: #ddd;
+        }
+
+        /* استایل برای آیکن‌های بادکنک */
+        .balloon {
+            position: fixed;
+            width: 50px;
+            height: 80px;
+            border-radius: 50%;
+            bottom: -100px;
+            animation: float 5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        /* انیمیشن حرکت آیکن‌های بادکنک */
+        @keyframes float {
+            0% {
+                bottom: -100px;
+            }
+            50% {
+                bottom: 70%;
+            }
+            100% {
+                bottom: -100px;
+            }
+        }
+
+        /* تنظیمات ریسپانسیو */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .gallery-item h4 {
+                font-size: 0.9em;
+            }
+
+            .balloon {
+                width: 40px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            .gallery {
+                padding: 10px;
+            }
+
+            .balloon {
+                width: 30px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- عنوان تولد -->
+    <h1>🥰تولدت مبارک حوریا جان🎈</h1>
+
+    <!-- پاراگراف تبریک -->
+    <p>🎇آرزوی بهترین‌ها را برای تو دارم. امیدوارم سالی پر از شادی و موفقیت داشته باشی. تولدت مبارک🎉</p>
+
+    <!-- گالری عکس -->
+    <div class="gallery">
+        <!-- عکس 1 -->
+        <div class="gallery-item" id="image1">
+            <img src="image1.jpg" alt="عکس 1">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 1)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 1)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-1">0</span> | قلب‌ها: <span id="heart-count-1">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 2 -->
+        <div class="gallery-item" id="image2">
+            <img src="image2.jpg" alt="عکس 2">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 2)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 2)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-2">0</span> | قلب‌ها: <span id="heart-count-2">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 3 -->
+        <div class="gallery-item" id="image3">
+            <img src="image8 (5).jpg" alt="عکس 3">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 3)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 3)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-3">0</span> | قلب‌ها: <span id="heart-count-3">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 4 -->
+        <div class="gallery-item" id="image4">
+            <img src="image5.jpg" alt="عکس 4">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 4)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 4)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-4">0</span> | قلب‌ها: <span id="heart-count-4">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 5 -->
+        <div class="gallery-item" id="image5">
+            <img src="IMG_E4877.JPG" alt="عکس 5">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 5)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 5)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-5">0</span> | قلب‌ها: <span id="heart-count-5">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 6 -->
+        <div class="gallery-item" id="image6">
+            <img src="۲۰۲۵۰۱۱۰_۲۱۳۳۰۲.jpg" alt="عکس 6">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 6)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 6)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-6">0</span> | قلب‌ها: <span id="heart-count-6">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 7 -->
+        <div class="gallery-item" id="image7">
+            <img src="image7.jpg" alt="عکس 7">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 7)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 7)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-7">0</span> | قلب‌ها: <span id="heart-count-7">0</span></div>
+            </div>
+        </div>
+        <!-- عکس 8 -->
+        <div class="gallery-item" id="image8">
+            <img src="image8 (3).jpg" alt="عکس 8">
+            <div class="reaction-buttons">
+                <button class="like-btn" onclick="react(this, 'like', 8)">لایک</button>
+                <button class="heart-btn" onclick="react(this, 'heart', 8)">❤️</button>
+                <div>لایک‌ها: <span id="like-count-8">0</span> | قلب‌ها: <span id="heart-count-8">0</span></div>
+            </div>
+        </div>
+    </div>
+    <!-- اضافه کردن آیکن‌های بادکنک -->
+    <div class="balloon" style="left: 80%; animation-duration: 5s;"><img src="./b3.png" alt=""></div>
+    <div class="balloon" style="left: 30%; animation-duration: 6s;"><img src="./b2.png" alt=""></div>
+    <div class="balloon" style="right: 99; animation-duration: 7s;"><img src="./b4.png" alt=""></div>
+    <div class="balloon" style="left: 71%; animation-duration: 8s;"><img src="./b5.png" alt=""></div>
+    <div class="balloon" style="left: 2%; animation-duration: 6s;"><img src="./b7.png" alt=""></div>
+
+    <script>
+        // بارگذاری تعداد لایک‌ها و قلب‌ها از localStorage
+        window.onload = function() {
+            for (let i = 1; i <= 8; i++) {
+                let likeCount = localStorage.getItem(`like-count-${i}`);
+                let heartCount = localStorage.getItem(`heart-count-${i}`);
+                if (likeCount) {
+                    document.getElementById(`like-count-${i}`).innerText = likeCount;
+                }
+                if (heartCount) {
+                    document.getElementById(`heart-count-${i}`).innerText = heartCount;
+                }
+            }
+        };
+
+        // عملکرد واکنش‌ها
+        function react(button, reactionType, imageIndex) {
+            const likeButton = button.closest('.reaction-buttons').querySelector('.like-btn');
+            const heartButton = button.closest('.reaction-buttons').querySelector('.heart-btn');
+
+            // بررسی لایک
+            if (reactionType === 'like') {
+                let likeCount = parseInt(localStorage.getItem(`like-count-${imageIndex}`) || '0');
+                likeCount++;
+                localStorage.setItem(`like-count-${imageIndex}`, likeCount);
+                document.getElementById(`like-count-${imageIndex}`).innerText = likeCount;
+
+                likeButton.disabled = true; // غیرفعال کردن دکمه لایک بعد از کلیک
+            }
+
+            // بررسی قلب
+            if (reactionType === 'heart') {
+                let heartCount = parseInt(localStorage.getItem(`heart-count-${imageIndex}`) || '0');
+                heartCount++;
+                localStorage.setItem(`heart-count-${imageIndex}`, heartCount);
+                document.getElementById(`heart-count-${imageIndex}`).innerText = heartCount;
+
+                heartButton.disabled = true; // غیرفعال کردن دکمه قلب بعد از کلیک
+            }
+        }
+    </script>
+
+</body>
+</html>
